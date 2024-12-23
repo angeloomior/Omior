@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você Perdeu!</title>
+    <style>
+        /* Estilos para a página de derrota */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6f61, #ff4e50);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Animação de fundo */
+        @keyframes gradientMove {
+            0% { background: linear-gradient(135deg, #ff6f61, #ff4e50); }
+            50% { background: linear-gradient(135deg, #ff4e50, #ff6f61); }
+            100% { background: linear-gradient(135deg, #ff6f61, #ff4e50); }
+        }
+
+        body {
+            animation: gradientMove 3s infinite alternate;
+        }
+
+        /* Estilo para a mensagem 'Você Perdeu!' */
+        #result-message {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Estilo do botão de jogar novamente */
+        #retry-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #ff5233;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #retry-button:hover {
+            background-color: #ff6f61;
+            transform: scale(1.1);
+        }
+
+        /* Som de derrota */
+        @keyframes soundEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        #retry-button {
+            animation: soundEffect 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="result-message">Você Perdeu!</div>
+
+    <!-- Botão para reiniciar o jogo -->
+    <button id="retry-button" onclick="window.location.href = 'index.html';">Jogar novamente</button>
+
+    <script>
+        // Som de derrota ao entrar na página
+        const loseSound = new Audio('https://www.soundjay.com/button/beep-05.wav');
+        loseSound.play();
+    </script>
+</body>
+</html>

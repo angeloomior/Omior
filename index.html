@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Simples</title>
+    <style>
+        /* Estilos para a página inicial */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #121212;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animação de fundo */
+        @keyframes move-background {
+            0% {background-color: #121212;}
+            50% {background-color: #333;}
+            100% {background-color: #121212;}
+        }
+
+        /* Estilo para o botão 'Jogar' */
+        #game-button {
+            padding: 20px 40px;
+            font-size: 24px;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #game-button:hover {
+            background-color: #ff5233;
+            transform: scale(1.1);
+        }
+
+        /* Partículas no fundo */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 99, 71, 0.7);
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); opacity: 1; }
+            50% { transform: translate(30px, 30px); opacity: 0.7; }
+            100% { transform: translate(0, 0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas no fundo -->
+    <div id="particles-container"></div>
+
+    <!-- Botão para jogar -->
+    <button id="game-button">Jogar</button>
+
+    <script>
+        // Função para criar partículas no fundo
+        function createParticle() {
+            const particle = document.createElement('div');
+            const size = Math.random() * 15 + 10; // Tamanho das partículas
+            const xPos = Math.random() * window.innerWidth;
+            const yPos = Math.random() * window.innerHeight;
+            const duration = Math.random() * 3 + 2; // Tempo da animação
+
+            particle.classList.add('particle');
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${xPos}px`;
+            particle.style.top = `${yPos}px`;
+            particle.style.animationDuration = `${duration}s`;
+
+            document.getElementById('particles-container').appendChild(particle);
+
+            // Remover a partícula após a animação
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+
+        // Gerar partículas no fundo a cada 100ms
+        setInterval(createParticle, 100);
+
+        // Adicionar som quando clicar no botão
+        const clickSound = new Audio('https://www.soundjay.com/button/beep-07.wav');
+        document.getElementById('game-button').addEventListener('click', function() {
+            clickSound.play();
+            window.location.href = 'result.html'; // Redireciona para a página de derrota
+        });
+    </script>
+</body>
+</html>
